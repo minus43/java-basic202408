@@ -14,27 +14,45 @@ public class LoopNestingQuiz {
 		 소수: 2 3 5 7 11 13 17 19 23 29
 		 소수의 개수: 10개
 		*/
-        Scanner sc = new Scanner(System.in);
-        System.out.print("정수입력:");
-        int n=sc.nextInt();
-        sc.close();
 
-        int k=2;
-        int count=0;
-        System.out.print("소수: ");
-        while(k<=n) {
-            int j=2;
-            while (k % j != 0) {
-                j++;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("정수: ");
+        int num = sc.nextInt();
+
+        int count = 0; // 소수의 개수가 몇 개인지를 기억할 변수. 반복문 내에 선언되면 x
+
+        for (int i=1; i<=num; i++) {
+            // 소수 판별을 위해 나누어 떨어진 횟수를 세 줄 변수.
+            // 반복문 내부에 선언을 해서, i++이 될 때마다 0으로 초기화 되어야 함.
+            int cnt = 0;
+            for (int j=1; j<=i; j++) {
+                if (i % j == 0) cnt++;
+
             }
-            if(k==j){
-                System.out.print(" "+k);
+            if (cnt == 2) {
+                System.out.print(i + " ");
                 count++;
             }
-            k++;
         }
-        System.out.println();
-        System.out.println("소수의 개수: "+count);
 
+
+        System.out.println("\n소수의 개수: " + count + "개");
+
+        sc.close();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

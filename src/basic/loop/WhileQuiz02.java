@@ -11,26 +11,50 @@ public class WhileQuiz02 {
 		  인지를 판별하시면 됩니다.
 		  소수: 약수가 1과 자기 자신만 있는 수.
 		 */
+
         Scanner sc = new Scanner(System.in);
-        System.out.print("정수입력:");
-        int n=sc.nextInt();
-        sc.close();
+        System.out.println("정수 입력: ");
+        int num = sc.nextInt();
 
-        if(n==1){
-            System.out.println("1은 소수가 아닙니다");
-            return;
-        }
+        int i = 1; // begin
+        int count = 0; // 약수의 개수를 기억할 변수.
 
-        int start=2;
-        while(start<n){
-            if(n%start==0){
-                System.out.println("n은 소수가 아닙니다");
-                break;
-            } else if (start==n-1) {
-                System.out.println("n은 소수입니다.");
+        while (i <= num) {
+            if (num % i == 0) {
+                count++;
             }
-            start++;
+            i++;
         }
+
+        if (count == 2) {
+            System.out.println(num + "은(는) 소수입니다.");
+        } else {
+            System.out.println(num + "은(는) 소수가 아닙니다.");
+        }
+
+        System.out.println("==============================================");
+
+        int j = 2;
+
+        while (num % j != 0) {
+            j++;
+        }
+
+        System.out.printf("%d은(는) %s\n"
+                , num, num == j ? "소수입니다." : "소수가 아닙니다.");
+
+        sc.close();
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+

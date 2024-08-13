@@ -18,30 +18,54 @@ public class WhileQuiz01 {
         - while문을 if else 로 나눠서 두번 쓰는 것은 지양하겠습니다.
        */
 
+        Scanner sc = new Scanner(System.in);
 
-        Scanner sc =new Scanner(System.in);
-        System.out.print("정수입력:");
-        int x=sc.nextInt();
-        System.out.print("정수입력:");
-        int y=sc.nextInt();
+        System.out.println("정수1: ");
+        int num1 = sc.nextInt();
+        System.out.println("정수2: ");
+        int num2 = sc.nextInt();
+
+        /*
+        if (num1 > num2) {
+            int temp = num1;
+            num1 = num2;
+            num2 = temp;
+        }
+
+        int n = num1;
+        */
+
+        int start = num1 > num2 ? num2 : num1;
+        int end = num1 > num2 ? num1 : num2;
+
+        int total = 0;
+        while (start <= end) {
+            total += start;
+            start++;
+        }
+
+        System.out.printf("%d부터 %d까지의 누적합계: %d\n", num1, num2, total);
+
         sc.close();
-
-        int temp;
-        int total=0;
-
-        if(x>y){
-            temp=y;
-            y=x;
-            x=temp;
-        }
-
-        int n=x;
-        while(n<=y){
-            total +=n;
-            n++;
-        }
-        System.out.println(x+"부터"+y+"까지의 결과값:"+total);
-
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
