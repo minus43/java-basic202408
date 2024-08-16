@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class ArrayQuiz01 {
 
     public static void main(String[] args) {
+
         /*
             # 음식명을 입력받아서 배열에 순서대로 저장하는 코드
             1. 음식명을 입력받는다.
@@ -17,26 +18,55 @@ public class ArrayQuiz01 {
             5. 새로운 음식명을 마지막 위치에 추가한다.
          */
 
-        String[] foods={"족발","파스타","치킨","삼겹살"};
+        Scanner sc = new Scanner(System.in);
 
-        Scanner sc =new Scanner(System.in);
-        while(true) {
-            System.out.println("음식:");
-            String name = sc.next();
-            if (name.equals("그만")) {
-                break;
-            }
-            String[] temp=new String[foods.length+1];
-            for(int i=0; i< foods.length; i++){
-                temp[i]=foods[i];
-            }
-            temp[foods.length]=name;
-            foods=temp;
-            temp=null;
-        }
+        System.out.println("# 먹고 싶은 음식을 입력하세요.");
+        System.out.println("# 입력을 중지하려면 <그만> 이라고 입력하세요.");
 
-        System.out.println(Arrays.toString(foods));
+        // 음식 이름을 저장할 배열 -> 초기에는 입력값이 없으니 빈 배열로 생성.
+        String[] foodList = {};
+
+        while (true) {
+            System.out.print("> ");
+            String newFood = sc.next();
+
+            if (newFood.equals("그만")) break;
+
+            // 기존 배열보다 큰 새 배열 생성
+            String[] temp = new String[foodList.length + 1];
+
+            // 기존 foodList에 있는 음식들 새 배열로 복사
+            for (int i = 0; i < foodList.length; i++) {
+                temp[i] = foodList[i];
+            }
+
+            // 새 음식을 끝 인덱스에 추가하자
+            temp[temp.length-1] = newFood;
+
+            // 주소값 이전
+            foodList = temp; temp = null;
+
+        } // end while
+
+        System.out.println("먹고 싶은 음식 리스트: " + Arrays.toString(foodList));
+
         sc.close();
-
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

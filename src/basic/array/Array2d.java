@@ -1,5 +1,7 @@
 package basic.array;
 
+import java.util.Arrays;
+
 public class Array2d {
 
     public static void main(String[] args) {

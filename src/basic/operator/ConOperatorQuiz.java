@@ -13,6 +13,10 @@ public class ConOperatorQuiz {
 		 3항 연산의 결과: 홀수입니다. or 짝수입니다.
 		*/
 
+        int randomNum=42+(int)(Math.random()*355);
+
+        String result= (randomNum%2==0) ? "짝수입니다":"홀수입니다.";
+        System.out.println(randomNum + "는 "+result);
 
 
 

@@ -13,32 +13,61 @@ public class InfiniteLoopQuiz {
 
 		 2. 종료 이후에 정답 횟수와 오답 횟수를 각각 출력하세요.
 		 */
-        int count0=0;
-        int countTrue=0;
-        Scanner sc =new Scanner(System.in);
 
-        while(true){
-            int a=(int)(Math.random()*100+1);
-            int b=(int)(Math.random()*100+1);
-            System.out.printf("%d x %d =?\n",a,b);
-            int result =sc.nextInt();
+        Scanner sc = new Scanner(System.in);
+        int cCount = 0;
+        int iCount = 0;
 
-            if(result!=a*b){
-                System.out.println("오답입니다~");
-                count0++;
-                if(count0==2){
-                    System.out.println("오답이 많아 종료되었습니다.");
-                    System.out.println("정답 횟수: "+countTrue+" 오답 횟수: "+count0);
-                    break;
-                }
-            } else if (result==a*b) {
-                System.out.println("정답입니다~");
-                countTrue++;
+        System.out.println("*** 연산 퀴즈 ***");
+        System.out.println("# 종료하시려면 0을 입력해 주세요.");
+
+        while (true) {
+
+
+            int rn1 = (int) ((Math.random()*100) + 1);
+            int rn2 = (int) ((Math.random()*100) + 1);
+            int operator = (int) (Math.random()*2); // 0 ~ 1
+
+            int correct;
+            if (operator == 0) {
+                System.out.printf("%d + %d = ???\n", rn1, rn2);
+                correct = rn1 + rn2;
+            } else {
+                System.out.printf("%d - %d = ???\n", rn1, rn2);
+                correct = rn1 - rn2;
             }
 
+            System.out.print("> ");
+            int answer = sc.nextInt();
+
+            if (answer == correct) {
+                System.out.println("정답입니다!");
+                cCount++;
+            } else if (answer == 0) {
+                System.out.println("종료합니다.");
+                break;
+            } else {
+                System.out.println("틀렸습니다~");
+                iCount++;
+            }
         }
 
-        }
+        System.out.println("-----------------------------------");
+        System.out.println("정답 횟수: " + cCount + "회");
+        System.out.println("오답 횟수: " + iCount + "회");
+
+        sc.close();
 
     }
+}
+
+
+
+
+
+
+
+
+
+
 
