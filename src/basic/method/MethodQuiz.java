@@ -59,68 +59,55 @@ public class MethodQuiz {
     // 원하는 인덱스 위치에 요소를 삽입하는 메서드를 작성하세요.
     // void insert(int targetIndex, String newFoodName)
     // targetIndex는 기존 foods의 배열 인덱스 범위 내여야 합니다.
-    static void insert(int targetIndex, String newFoodName){
-        if(isOutOfBounds(targetIndex)){
-           return;
+    static void insert(int targetIndex, String newFoodName) {
+        if (isOutOfBounds(targetIndex)) return;
+        String[] temp = copy(1);
+        for (int i = foods.length; i > targetIndex; i--) {
+            temp[i] = temp[i-1];
         }
-        String[] newFoods =copy(1);
-        newFoods=foods;
-        for(int i=newFoods.length-1; i>targetIndex; i--){
-            newFoods[i]=newFoods[i-1];
-        }
-        newFoods[targetIndex]=newFoodName;
-        foods=newFoods;
-        newFoods=null;
-        return;
+        temp[targetIndex] = newFoodName;
+        foods = temp;
     }
+
+
 
     // 원하는 인덱스 위치의 요소를 수정하는 메서드를 작성하세요.
     // void modify(int targetIndex, String newFoodName)
     // targetIndex는 기존 foods의 배열 인덱스 범위 내여야 합니다.
-    static void modify(int targetIndex, String newFoodName){
-        if(isOutOfBounds(targetIndex)){
-            return;
-        }
-        foods[targetIndex]=newFoodName;
-        return;
-
+    static void modify(int targetIndex, String newFoodName) {
+        if (isOutOfBounds(targetIndex)) return;
+        foods[targetIndex] = newFoodName;
     }
 
     // 특정 인덱스가 범위 내의 올바른 인덱스인지를 확인하는 메서드를 작성하세요.
     // boolean isOutOfBounds(int targetIndex)
     // 작성이 완료되면 타 메서드에서 활용할 수 있을 것입니다.
     static boolean isOutOfBounds(int targetIndex) {
-        if (targetIndex < 0 || targetIndex >= foods.length) {
-            System.out.println("targetIndex가 잘못된 값입니다.");
-            return true;
-        }
-        return false;
+        return targetIndex > foods.length - 1 || targetIndex < 0;
+//        if (targetIndex > foods.length - 1 || targetIndex < 0) {
+//            System.out.println("인덱스 범위가 올바르지 않아요!");
+//            return true;
+//        }
+//        return false;
     }
+
     // 특정 인덱스의 요소를 삭제하는 메서드를 작성하세요.
     // void remove(String deleteTarget)
-    static void remove(String deleteTarget){
-        int deleteIndex=indexOf(deleteTarget);
-        if(deleteIndex<0){
-            System.out.println("없는 요소입니다.");
-            return;
-        }
-        for(int i= deleteIndex; i<foods.length-1; i++){
-            foods[i]=foods[i+1];
+    static void remove(String deleteTarget) {
+        int index = indexOf(deleteTarget);
+        if (index == -1) return;
+
+        for (int i = index; i < foods.length-1; i++) {
+            foods[i] = foods[i + 1];
         }
         pop();
     }
+
     // 배열 내부를 깔끔하게 비워버리는 메서드를 작성하세요. (삭제 반복 x)
     // void clear()
-    static void clear(){
+    static void clear() {
         foods = new String[] {};
-        printFoods();
     }
-
-
-
-
-
-
 
 
     public static void main(String[] args) {
@@ -136,7 +123,23 @@ public class MethodQuiz {
         pop();
         printFoods();
 
+        insert(500, "apple");
+        printFoods();
+
+        modify(1, "hamburger");
+        printFoods();
+
+        remove("beef");
+        printFoods();
+
         clear();
+        printFoods();
+
+        push("banana");
+        printFoods();
+
+
+
     }
 
 }
